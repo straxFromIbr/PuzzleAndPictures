@@ -1,4 +1,4 @@
-# JetPackSampleApp
+PuzzleAndPictures
 ビルド確認用
 
 ## 特筆すべき変更：
