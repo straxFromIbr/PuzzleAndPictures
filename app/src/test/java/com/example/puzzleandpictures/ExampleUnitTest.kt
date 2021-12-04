@@ -1,4 +1,4 @@
-package com.example.jetpacksampleapp
+package com.example.puzzleandpictures
 
 import org.junit.Test
 

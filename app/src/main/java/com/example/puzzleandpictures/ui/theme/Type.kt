@@ -1,4 +1,4 @@
-package com.example.jetpacksampleapp.ui.theme
+package com.example.puzzleandpictures.ui.theme
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle

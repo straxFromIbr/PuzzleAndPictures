@@ -1,4 +1,4 @@
-package com.example.jetpacksampleapp.ui.theme
+package com.example.puzzleandpictures.ui.theme
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Shapes

@@ -1,4 +1,4 @@
-package com.example.jetpacksampleapp
+package com.example.puzzleandpictures
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -22,7 +22,6 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-data class Message(val author: String, val body: String)
 
 @Composable
 fun ShowTaki() {
