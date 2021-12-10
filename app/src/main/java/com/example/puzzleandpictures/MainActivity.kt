@@ -1,3 +1,5 @@
+// テスト！！
+
 package com.example.puzzleandpictures
 
 import android.os.Bundle
@@ -5,6 +7,8 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
+import androidx.compose.material.Button
+import androidx.compose.material.Text
 
 
 import androidx.compose.runtime.Composable
@@ -22,37 +26,40 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+//@Preview(showBackground = true)
+//@Composable
+//fun ButtonPreview() {
+//    Button() {
+//        Text("Button")
+//    }
+//}
 
 @Composable
 fun ShowTaki() {
     Column {
-        Column(
-            modifier = Modifier.fillMaxSize(),
-        ) {
-            Row {
-                ImageChoose(0)
-                ImageChoose(1)
-                ImageChoose(2)
-                ImageChoose(3)
-            }
-            Row {
-                ImageChoose(4)
-                ImageChoose(5)
-                ImageChoose(6)
-                ImageChoose(7)
-            }
-            Row {
-                ImageChoose(8)
-                ImageChoose(9)
-                ImageChoose(10)
-                ImageChoose(11)
-            }
-            Row {
-                ImageChoose(12)
-                ImageChoose(13)
-                ImageChoose(14)
-                ImageChoose(15)
-            }
+        Row {
+            ImageChoose(0)
+            ImageChoose(1)
+            ImageChoose(2)
+            ImageChoose(3)
+        }
+        Row {
+            ImageChoose(4)
+            ImageChoose(5)
+            ImageChoose(6)
+            ImageChoose(7)
+        }
+        Row {
+            ImageChoose(8)
+            ImageChoose(9)
+            ImageChoose(10)
+            ImageChoose(11)
+        }
+        Row {
+            ImageChoose(12)
+            ImageChoose(13)
+            ImageChoose(14)
+            ImageChoose(15)
         }
     }
 }
@@ -87,6 +94,12 @@ fun ImageChoose(imageID: Int) {
     )
 }
 
+
+@Preview
+@Composable
+fun PreviewImage() {
+    ImageChoose(1)
+}
 
 @Preview
 @Composable
