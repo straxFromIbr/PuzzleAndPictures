@@ -1,23 +1,18 @@
-package com.example.puzzleandpictures
+package com.example.puzzleandpictures.view
 
-import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
+
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.*
-import androidx.compose.material.Button
-import androidx.compose.material.Text
-
-
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
+import androidx.compose.ui.res.painterResource
+import com.example.puzzleandpictures.R
 
 
 @Composable
-fun ImageChoose(imageID: Int) {
+fun ImageChoose(
+    imageID: Int,
+) {
     var id = R.drawable.takizawa
     when (imageID) {
         // このぶぶんどうにかしてほしい
@@ -37,16 +32,18 @@ fun ImageChoose(imageID: Int) {
         13 -> id = R.drawable.taki_3_1
         14 -> id = R.drawable.taki_3_2
         15 -> id = R.drawable.taki_3_3
+        else -> id = R.drawable.white
     }
+
+
     Image(
         painter = painterResource(id = id),
-        contentDescription = "Contact profile picture",
-        modifier = Modifier.size(80.dp),
+        contentDescription = "puzzle view",
+        modifier = Modifier.fillMaxSize(),
     )
 }
 
-@Preview
-@Composable
-fun PreviewImage() {
-    ImageChoose(1)
-}
+
+
+
+
