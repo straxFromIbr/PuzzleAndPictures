@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>レポート.md</title>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8"> 
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+ <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({ tex2jax: {inlineMath: [['$', '$']]}, messageStyle: "none" });
+    </script>
+</head>
+
+<body>
+    <script>
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast') ?
+                'dark' : 'default'
+        });
+    </script>
+    <h1 id="%E6%83%85%E5%A0%B1%E5%B7%A5%E5%AD%A6%E5%AE%9F%E9%A8%93%E3%83%A2%E3%83%90%E3%82%A4%E3%83%AB%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E9%96%8B%E7%99%BA">情報工学実験：モバイルアプリケーション開発</h1>
+<ul>
+<li><a href="#%E6%83%85%E5%A0%B1%E5%B7%A5%E5%AD%A6%E5%AE%9F%E9%A8%93%E3%83%A2%E3%83%90%E3%82%A4%E3%83%AB%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E9%96%8B%E7%99%BA">情報工学実験：モバイルアプリケーション開発</a>
+<ul>
+<li><a href="#%E7%9B%AE%E7%9A%84">目的</a></li>
+<li><a href="#%E5%AE%9F%E9%A8%93%E3%81%AE%E6%A6%82%E8%A6%81">実験の概要</a></li>
+<li><a href="#%E5%AE%9F%E9%A8%93%E3%81%AE%E5%AE%9F%E6%96%BD%E5%86%85%E5%AE%B9">実験の実施内容</a>
+<ul>
+<li><a href="#%E9%96%8B%E7%99%BA%E3%81%97%E3%81%9F%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AE%E6%A6%82%E8%A6%81">開発したアプリケーションの概要</a></li>
+<li><a href="#%E4%BD%BF%E7%94%A8%E3%81%97%E3%81%9F%E6%8A%80%E8%A1%93">使用した技術</a></li>
+<li><a href="#%E5%88%86%E6%8B%85">分担</a></li>
+<li><a href="#%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%A0%E3%81%AE%E6%A7%8B%E6%88%90">プログラムの構成</a></li>
+<li><a href="#%E4%BD%9C%E6%88%90%E3%81%97%E3%81%9F%E3%82%BD%E3%83%BC%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%89">作成したソースコード</a></li>
+</ul>
+</li>
+<li><a href="#%E6%84%9F%E6%83%B3">感想</a></li>
+<li><a href="#%E5%8F%82%E8%80%83">参考</a></li>
+</ul>
+</li>
+<li><a href="#%E4%BB%98%E9%8C%B2%E3%82%BD%E3%83%BC%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%89%E4%B8%80%E8%A6%A7">付録：ソースコード一覧</a>
+<ul>
+<li><a href="#repository"><code>repository/</code></a></li>
+<li><a href="#viewmodel"><code>viewmodel</code></a></li>
+<li><a href="#view"><code>view</code></a></li>
+<li><a href="#uitheme"><code>ui/theme</code></a></li>
+</ul>
+</li>
+</ul>
+<h2 id="%E7%9B%AE%E7%9A%84">目的</h2>
+<ul>
+<li>スマートフォン用アプリケーションソフトウェアを開発するために必要な基礎知識・技術を学ぶ</li>
+</ul>
+<h2 id="%E5%AE%9F%E9%A8%93%E3%81%AE%E6%A6%82%E8%A6%81">実験の概要</h2>
+<ul>
+<li>Android端末向けにアプリケーションを開発する。開発環境としてAndroid Studioを使用する。</li>
+</ul>
+<h2 id="%E5%AE%9F%E9%A8%93%E3%81%AE%E5%AE%9F%E6%96%BD%E5%86%85%E5%AE%B9">実験の実施内容</h2>
+<h3 id="%E9%96%8B%E7%99%BA%E3%81%97%E3%81%9F%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AE%E6%A6%82%E8%A6%81">開発したアプリケーションの概要</h3>
+<p>今回開発したアプリケーションは、ランダムに表示される画像の断片を組み合わせ、画像を完成させるパズルゲームであり、名称は &quot;Puzzle And Pictures&quot;である。</p>
+<p>画面はつぎに示される画像の通りで、画面中央部の4x4のマス目が&quot;パズルエリア&quot;、その下の横一列にマス目が4つ並んだ部分が画像の断片が表示される&quot;ガチャエリア&quot;、最下部の2つのボタンはそれぞれ、&quot;ガチャボタン&quot;、&quot;クリアボタン&quot;である。</p>
+<p><img src="./images/mainview.png" alt=""></p>
+<p>それぞれ次のような機能を持つ。</p>
+<ul>
+<li>パズルエリア
+<ul>
+<li>ガチャエリアに表示された画像を配置しパズルを完成させる部分。</li>
+</ul>
+</li>
+<li>ガチャエリア
+<ul>
+<li>パズルに使用する画像の断片が4枚表示される。</li>
+</ul>
+</li>
+<li>ガチャボタン
+<ul>
+<li>押すことでガチャエリアに4枚の画像の断片を無作為に表示する。</li>
+</ul>
+</li>
+<li>クリアボタン
+<ul>
+<li>パズルエリアの表示を初期化する。</li>
+</ul>
+</li>
+</ul>
+<p>ユーザは次のようにしてアプリを使用する。</p>
+<ol>
+<li>ガチャボタンをタップする。</li>
+<li>ガチャエリアに表示された画像のうち1つをタップし選択する。</li>
+<li>選択した写真を配置する場所をパズルエリアから選択する。</li>
+<li>もし配置する場所を間違えた場合、クリアボタンでパズルエリアを初期化する。</li>
+<li>もしガチャエリアに置きたい写真がなくなった場合、ガチャボタンをタップし2に戻る。</li>
+</ol>
+<h3 id="%E4%BD%BF%E7%94%A8%E3%81%97%E3%81%9F%E6%8A%80%E8%A1%93">使用した技術</h3>
+<p>本アプリケーションはJetPack Composeを用い、Kotlinで記述し開発した。プログラムの構成はModel View ViewModel(MVVM)アーキテクチャに沿うようにした。
+また開発環境としてAndroid Studio Arctic Foxを使用した。</p>
+<h3 id="%E5%88%86%E6%8B%85">分担</h3>
+<p>初期のアイデアは佐藤が考案し、またパズルエリアのモデルの作成をした。 伊藤と大内はデザインの定義とレイアウトの作成を担当した。 芳賀はおおまかな設計の提案と他3名が作成した部品の統合を担当した。</p>
+<p>次に各班員が作成したファイルを示す。</p>
+<ul>
+<li>伊藤：<code>view/GachaView.kt</code></li>
+<li>大内：<code>ui/theme/Color.kt</code>、<code>view/ButtonView.kt</code></li>
+<li>佐藤：<code>repository/MainPictureRepository.kt</code></li>
+<li>芳賀：<code>repository/GachaRepository.kt</code>, <code>viewmodel/MainViewModel.kt</code>, <code>view/MainView.kt</code>, その他データクラス、ユーティリティ関数の定義</li>
+</ul>
+<h3 id="%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%A0%E3%81%AE%E6%A7%8B%E6%88%90">プログラムの構成</h3>
+<p>プロジェクトのファイル群はGitHubリポジトリ<a href="https://github.com/straxFromIbr/PuzzleAndPictures/tree/b7f41946681e5006868df870e1d6d353433cc5fa">straxFromIbr/PuzzleAndPictures</a>にアップロードしてある。</p>
+<p>以下にディレクトリの構成の概観を示す。</p>
+<ul>
+<li><code>PuzzleAndPictures/app/src/main/java/com/example/puzzleandpictures/</code>:ソースコードのルート
+<ul>
+<li><code>repository/</code>
+<ul>
+<li>MVVMのModel部分に相当する、ドメインロジックへのインタフェースを提供する。</li>
+<li><code>GachaRepository.kt</code> はガチャエリアに表示される画像のIDを生成する。</li>
+<li><code>MainPictureRepository.kt</code> はパズルエリアの画像の状態の保持と更新を行う。</li>
+</ul>
+</li>
+<li><code>ui/theme/</code>
+<ul>
+<li>色彩などを定義している。</li>
+</ul>
+</li>
+<li><code>viewmodel/</code>
+<ul>
+<li>MVVMのViewModel部分に相当する。</li>
+<li><code>repository/</code>への参照を持ち、ユーザのアクション時に呼び出される関数と、モデルの操作を対応づけている。</li>
+</ul>
+</li>
+<li><code>view/</code>
+<ul>
+<li>MVVMのView部分に相当する。</li>
+<li>ViewModelへの参照を持ち、画面に表示される部品や、ボタンのクリックなどのアクション時にViewModelの対応するメソッドの呼び出しを定義する。</li>
+<li><code>MainView.kt</code>で画面全体を定義している。</li>
+</ul>
+</li>
+<li><code>MainActivity.kt</code>
+<ul>
+<li>ViewModelをインスタンス作成し、<code>MainView</code>関数に渡して呼び出している。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>また<code>repository/</code>内で次の2つのデータクラスを実装した。</p>
+<ul>
+<li>
+<p><code>RowPicIDs</code>
+-これはガチャエリアやパズルエリアの各行の、横一列に4つ並ぶ画像のIDを保持するためのデータクラスである。</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">data</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">RowPicIDs</span> </span>(
+    <span class="hljs-keyword">var</span> a: <span class="hljs-built_in">Int</span> = -<span class="hljs-number">1</span>,
+    <span class="hljs-keyword">var</span> b: <span class="hljs-built_in">Int</span> = -<span class="hljs-number">1</span>,
+    <span class="hljs-keyword">var</span> c: <span class="hljs-built_in">Int</span> = -<span class="hljs-number">1</span>,
+    <span class="hljs-keyword">var</span> d: <span class="hljs-built_in">Int</span> = -<span class="hljs-number">1</span>,
+)
+</div></code></pre>
+</li>
+<li>
+<p><code>MainPictureIDs</code></p>
+<ul>
+<li>これはパズルエリア全体の画像のIDを保持するためのデータクラスである。</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-keyword">data</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainPictureIDs</span></span>(
+    <span class="hljs-keyword">val</span> row1: RowPicIDs = RowPicIDs(),
+    <span class="hljs-keyword">val</span> row2: RowPicIDs = RowPicIDs(),
+    <span class="hljs-keyword">val</span> row3: RowPicIDs = RowPicIDs(),
+    <span class="hljs-keyword">val</span> row4: RowPicIDs = RowPicIDs(),
+)
+</div></code></pre>
+</li>
+</ul>
+<p>また、パズルで使用した画像ファイルは<code>PuzzleAndPictures/app/src/main/res/drawable</code>にJPEGで保存している。</p>
+<h3 id="%E4%BD%9C%E6%88%90%E3%81%97%E3%81%9F%E3%82%BD%E3%83%BC%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%89">作成したソースコード</h3>
+<p>次に作成を担当したしたソースコードの抜粋を示す。
+全ファイルは<a href="https://github.com/straxFromIbr/PuzzleAndPictures/tree/b7f41946681e5006868df870e1d6d353433cc5fa">straxFromIbr/PuzzleAndPictures</a>で参照できる。</p>
+<ul>
+<li>
+<p><code>repository/GachaRepository.kt</code></p>
+<ul>
+<li>乱数で初期化されたRowPicIDsデータクラスを返却する。</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-keyword">package</span> com.example.puzzleandpictures.repository
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">GachaRepository</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">doGacha</span><span class="hljs-params">()</span></span>: RowPicIDs {
+        <span class="hljs-keyword">val</span> range = (<span class="hljs-number">0</span>..<span class="hljs-number">15</span>)
+        <span class="hljs-keyword">return</span> RowPicIDs(range.random(), range.random(), range.random(), range.random())
+    }
+}
+</div></code></pre>
+</li>
+<li>
+<p><code>viewmodel/MainViewModel.kt</code></p>
+<ul>
+<li>UIへの操作に応じてモデルのメソッドを呼び出している。</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-keyword">package</span> com.example.puzzleandpictures.viewmodel
+
+<span class="hljs-comment">// import文は省略した</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainViewModel</span></span>() : ViewModel() {
+    <span class="hljs-comment">// モデルのインスタンス作成</span>
+    <span class="hljs-comment">// 時間の都合上DIは実施していない。</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">val</span> mainPictureRepository: MainPictureRepository = MainPictureRepository()
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">val</span> gachaRepository: GachaRepository = GachaRepository()
+
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">var</span> selectedPicID: <span class="hljs-built_in">Int</span> = <span class="hljs-number">16</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">var</span> isPicSelected = <span class="hljs-literal">false</span>
+
+    <span class="hljs-keyword">val</span> gachaResultIDs: MutableState&lt;RowPicIDs&gt; = mutableStateOf(RowPicIDs())
+    <span class="hljs-keyword">val</span> mainPictureIDs: MutableState&lt;MainPictureIDs&gt; = mutableStateOf(MainPictureIDs())
+
+    <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">onGachaTapped</span><span class="hljs-params">()</span></span> {
+        <span class="hljs-comment">// ガチャボタンがタップされた時の処理</span>
+        gachaResultIDs.value = gachaRepository.doGacha()
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">onPicSelected</span><span class="hljs-params">(imageID: <span class="hljs-type">Int</span>)</span></span> {
+        <span class="hljs-comment">// ガチャエリアから画像が選択された時の処理</span>
+        selectedPicID = imageID
+        isPicSelected = <span class="hljs-literal">true</span>
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">onPlaceSelected</span><span class="hljs-params">(placeID: <span class="hljs-type">Int</span>)</span></span> {
+        <span class="hljs-comment">// パズルエリアに写真を配置する場所を選択した時の処理</span>
+        <span class="hljs-keyword">if</span> (isPicSelected) {
+            <span class="hljs-keyword">val</span> resultArray = mainPictureRepository.Place_Pic(selectedPicID, placeID)
+            mainPictureIDs.value = convertArrayToAllPicIDs(resultArray)
+            isPicSelected = <span class="hljs-literal">false</span>
+        }
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">onClearTapped</span><span class="hljs-params">()</span></span> {
+        <span class="hljs-comment">// クリアボタンが押された時の処理</span>
+        mainPictureRepository.Clear()
+        mainPictureIDs.value = convertArrayToAllPicIDs(mainPictureRepository.current_pic)
+    }
+
+    <span class="hljs-keyword">private</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">convertArrayToAllPicIDs</span><span class="hljs-params">(array16: <span class="hljs-type">IntArray</span>)</span></span>: MainPictureIDs {
+        <span class="hljs-comment">// MainPictureRepositoryの返り値をMainPictureIDs型に変換する処理</span>
+        <span class="hljs-keyword">val</span> row0 = RowPicIDs(array16[<span class="hljs-number">0</span>], array16[<span class="hljs-number">1</span>], array16[<span class="hljs-number">2</span>], array16[<span class="hljs-number">3</span>])
+        <span class="hljs-keyword">val</span> row1 = RowPicIDs(array16[<span class="hljs-number">4</span>], array16[<span class="hljs-number">5</span>], array16[<span class="hljs-number">6</span>], array16[<span class="hljs-number">7</span>])
+        <span class="hljs-keyword">val</span> row2 = RowPicIDs(array16[<span class="hljs-number">8</span>], array16[<span class="hljs-number">9</span>], array16[<span class="hljs-number">10</span>], array16[<span class="hljs-number">11</span>])
+        <span class="hljs-keyword">val</span> row3 = RowPicIDs(array16[<span class="hljs-number">12</span>], array16[<span class="hljs-number">13</span>], array16[<span class="hljs-number">14</span>], array16[<span class="hljs-number">15</span>])
+        <span class="hljs-keyword">return</span> MainPictureIDs(row0, row1, row2, row3)
+    }
+}
+</div></code></pre>
+<ul>
+<li><code>view/MainView.ky</code>
+<ul>
+<li>引数として与えられたViewModelのプロパティとメソッドを各UI部品に渡している。</li>
+</ul>
+</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-keyword">package</span> com.example.puzzleandpictures.view
+
+<span class="hljs-meta">@Composable</span>
+<span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">MainView</span><span class="hljs-params">(mainViewModel: <span class="hljs-type">MainViewModel</span>)</span></span> {
+    <span class="hljs-keyword">val</span> mainPictureIDs: MainPictureIDs <span class="hljs-keyword">by</span> mainViewModel.mainPictureIDs
+    <span class="hljs-keyword">val</span> gachaResultIDs: RowPicIDs <span class="hljs-keyword">by</span> mainViewModel.gachaResultIDs
+
+    <span class="hljs-keyword">val</span> padding = <span class="hljs-number">16</span>.dp
+
+    Column(
+        Modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally,
+    ) {
+        MainPictureView(
+            mainPictureIDs,
+            mainViewModel::onPlaceSelected
+        )
+        Spacer(Modifier.size(padding))
+        GachaResultView(
+            rowPicIDs = gachaResultIDs,
+            onPicSelected = mainViewModel::onPicSelected
+        )
+        Spacer(Modifier.size(padding))
+        ShowButtons(
+            onGachaTapped = mainViewModel::onGachaTapped,
+            onClearTapped = mainViewModel::onClearTapped,
+        )
+    }
+}
+</div></code></pre>
+</li>
+</ul>
+<h2 id="%E6%84%9F%E6%83%B3">感想</h2>
+<p>以前簡易的なAnbdroidアプリケーションを作成したときは個人開発であり、MainActivityにほとんどの処理を書くような乱暴な設計でもさほど問題にならなかった。しかし複数人で分担して開発するときには、アプリケーションを構成する機能を分割し、それぞれが過度に依存しすぎないような設計をする必要があると実感した。
+反省点としては、今回のアプリケーションはドメインロジックが簡単であった反面ViewModelのメソッドを孫コンポーネントまでバケツリレーのように渡していくなど、Viewの部分が複雑になってしまったこと、また、事前の取り決めが甘く、データの型がまちまちになってしまったことが挙げられる。</p>
+<h2 id="%E5%8F%82%E8%80%83">参考</h2>
+<ul>
+<li>Jetpack ComposeによるAndroid MVVMアーキテクチャ入門, 奥澤 俊樹</li>
+</ul>
+<h1 id="%E4%BB%98%E9%8C%B2%E3%82%BD%E3%83%BC%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%89%E4%B8%80%E8%A6%A7">付録：ソースコード一覧</h1>
+<p>以下にkotlinファイルを掲載する。</p>
+<h2 id="repository"><code>repository/</code></h2>
+<ul>
+<li><code>GachaRepository.kt</code></li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-keyword">package</span> com.example.puzzleandpictures.repository
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">GachaRepository</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">doGacha</span><span class="hljs-params">()</span></span>: RowPicIDs {
+        <span class="hljs-keyword">val</span> range = (<span class="hljs-number">0</span>..<span class="hljs-number">15</span>)
+        <span class="hljs-keyword">return</span> RowPicIDs(range.random(), range.random(), range.random(), range.random())
+    }
+}
+</div></code></pre>
+<ul>
+<li><code>MainPictureRepository</code></li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-keyword">package</span> com.example.puzzleandpictures.repository
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainPictureRepository</span> </span>{
+    <span class="hljs-comment">//current_picの値は16個の配列</span>
+    <span class="hljs-comment">//初期値として透明の画像に対応するidをcurrent_picに代入</span>
+    <span class="hljs-keyword">var</span> current_pic = IntArray(<span class="hljs-number">16</span>) { <span class="hljs-number">16</span> }
+    <span class="hljs-keyword">init</span> {
+        <span class="hljs-comment">//println("initialize current_pic")</span>
+        Clear()
+        <span class="hljs-comment">//println(current_pic[3])</span>
+    }
+    <span class="hljs-comment">//すべてのメイン画像を透明に変更</span>
+    <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">Clear</span><span class="hljs-params">()</span></span> {
+        current_pic = IntArray(<span class="hljs-number">16</span>) { <span class="hljs-number">16</span> }
+    }
+
+    <span class="hljs-comment">//ガチャ画面で選択された画像のidを取得して、現在の盤面のどこに入力を行うのか実行する</span>
+    <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">Place_Pic</span><span class="hljs-params">(selected_picture_id: <span class="hljs-type">Int</span>, Place_id: <span class="hljs-type">Int</span>)</span></span>: IntArray {
+        current_pic[Place_id] = selected_picture_id
+        <span class="hljs-comment">// println(current_pic[Place_id])</span>
+        <span class="hljs-keyword">return</span> current_pic
+    }
+
+    <span class="hljs-comment">//現在の画像の配置状態を配列で表示</span>
+    <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">show_current_pic</span><span class="hljs-params">()</span></span> {
+        println(current_pic.contentToString())
+    }
+
+    <span class="hljs-comment">//すべてのタイルに画像がすべて埋まっている場合</span>
+    <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">is_all_placed</span><span class="hljs-params">()</span></span>: <span class="hljs-built_in">Boolean</span> {
+        <span class="hljs-comment">//もしcurrent_picの中にまだ埋まっていない画像がある場合はtrueを返します</span>
+        <span class="hljs-keyword">return</span> current_pic.contains(<span class="hljs-number">16</span>)
+    }
+}
+</div></code></pre>
+<ul>
+<li><code>RowPicIDs.kt</code></li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-keyword">package</span> com.example.puzzleandpictures.repository
+<span class="hljs-keyword">data</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">RowPicIDs</span> </span>(
+    <span class="hljs-keyword">var</span> a: <span class="hljs-built_in">Int</span> = -<span class="hljs-number">1</span>,
+    <span class="hljs-keyword">var</span> b: <span class="hljs-built_in">Int</span> = -<span class="hljs-number">1</span>,
+    <span class="hljs-keyword">var</span> c: <span class="hljs-built_in">Int</span> = -<span class="hljs-number">1</span>,
+    <span class="hljs-keyword">var</span> d: <span class="hljs-built_in">Int</span> = -<span class="hljs-number">1</span>,
+)
+</div></code></pre>
+<ul>
+<li><code>MainPictureIDs.kt</code></li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-keyword">package</span> com.example.puzzleandpictures.repository
+
+<span class="hljs-keyword">data</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainPictureIDs</span></span>(
+    <span class="hljs-keyword">val</span> row1: RowPicIDs = RowPicIDs(),
+    <span class="hljs-keyword">val</span> row2: RowPicIDs = RowPicIDs(),
+    <span class="hljs-keyword">val</span> row3: RowPicIDs = RowPicIDs(),
+    <span class="hljs-keyword">val</span> row4: RowPicIDs = RowPicIDs(),
+)
+</div></code></pre>
+<h2 id="viewmodel"><code>viewmodel</code></h2>
+<ul>
+<li><code>MainViewModel.kt</code></li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-keyword">package</span> com.example.puzzleandpictures.viewmodel
+
+<span class="hljs-keyword">import</span> androidx.compose.runtime.MutableState
+<span class="hljs-keyword">import</span> androidx.compose.runtime.mutableStateOf
+<span class="hljs-keyword">import</span> androidx.lifecycle.ViewModel
+<span class="hljs-keyword">import</span> com.example.puzzleandpictures.repository.GachaRepository
+<span class="hljs-keyword">import</span> com.example.puzzleandpictures.repository.MainPictureIDs
+<span class="hljs-keyword">import</span> com.example.puzzleandpictures.repository.MainPictureRepository
+<span class="hljs-keyword">import</span> com.example.puzzleandpictures.repository.RowPicIDs
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainViewModel</span></span>() : ViewModel() {
+    <span class="hljs-comment">// DIは実施していない</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">val</span> mainPictureRepository: MainPictureRepository = MainPictureRepository()
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">val</span> gachaRepository: GachaRepository = GachaRepository()
+
+    <span class="hljs-comment">// ガチャ画面</span>
+    <span class="hljs-comment">/// 選択された写真ID</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">var</span> selectedPicID: <span class="hljs-built_in">Int</span> = <span class="hljs-number">16</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">var</span> isPicSelected = <span class="hljs-literal">false</span>
+
+    <span class="hljs-comment">/// ガチャ結果データ</span>
+    <span class="hljs-keyword">val</span> gachaResultIDs: MutableState&lt;RowPicIDs&gt; = mutableStateOf(RowPicIDs())
+
+    <span class="hljs-comment">// 現在表示されてる画像</span>
+    <span class="hljs-keyword">val</span> mainPictureIDs: MutableState&lt;MainPictureIDs&gt; = mutableStateOf(MainPictureIDs())
+
+
+    <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">onGachaTapped</span><span class="hljs-params">()</span></span> {
+        gachaResultIDs.value = gachaRepository.doGacha()
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">onPicSelected</span><span class="hljs-params">(imageID: <span class="hljs-type">Int</span>)</span></span> {
+        selectedPicID = imageID
+        isPicSelected = <span class="hljs-literal">true</span>
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">onPlaceSelected</span><span class="hljs-params">(placeID: <span class="hljs-type">Int</span>)</span></span> {
+        <span class="hljs-keyword">if</span> (isPicSelected) {
+            <span class="hljs-keyword">val</span> resultArray = mainPictureRepository.Place_Pic(selectedPicID, placeID)
+            mainPictureIDs.value = convertArrayToAllPicIDs(resultArray)
+            isPicSelected = <span class="hljs-literal">false</span>
+        }
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">onClearTapped</span><span class="hljs-params">()</span></span> {
+        mainPictureRepository.Clear()
+        mainPictureIDs.value = convertArrayToAllPicIDs(mainPictureRepository.current_pic)
+    }
+
+    <span class="hljs-keyword">private</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">convertArrayToAllPicIDs</span><span class="hljs-params">(array16: <span class="hljs-type">IntArray</span>)</span></span>: MainPictureIDs {
+        <span class="hljs-keyword">val</span> row0 = RowPicIDs(array16[<span class="hljs-number">0</span>], array16[<span class="hljs-number">1</span>], array16[<span class="hljs-number">2</span>], array16[<span class="hljs-number">3</span>])
+        <span class="hljs-keyword">val</span> row1 = RowPicIDs(array16[<span class="hljs-number">4</span>], array16[<span class="hljs-number">5</span>], array16[<span class="hljs-number">6</span>], array16[<span class="hljs-number">7</span>])
+        <span class="hljs-keyword">val</span> row2 = RowPicIDs(array16[<span class="hljs-number">8</span>], array16[<span class="hljs-number">9</span>], array16[<span class="hljs-number">10</span>], array16[<span class="hljs-number">11</span>])
+        <span class="hljs-keyword">val</span> row3 = RowPicIDs(array16[<span class="hljs-number">12</span>], array16[<span class="hljs-number">13</span>], array16[<span class="hljs-number">14</span>], array16[<span class="hljs-number">15</span>])
+        <span class="hljs-keyword">return</span> MainPictureIDs(row0, row1, row2, row3)
+    }
+
+}
+
+</div></code></pre>
+<h2 id="view"><code>view</code></h2>
+<ul>
+<li><code>ButtonView.kt</code></li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-keyword">package</span> com.example.puzzleandpictures.view
+
+<span class="hljs-keyword">import</span> androidx.compose.foundation.layout.Column
+<span class="hljs-keyword">import</span> androidx.compose.material.Button
+<span class="hljs-keyword">import</span> androidx.compose.material.ButtonDefaults
+<span class="hljs-keyword">import</span> androidx.compose.material.Text
+<span class="hljs-keyword">import</span> androidx.compose.runtime.Composable
+<span class="hljs-keyword">import</span> com.example.puzzleandpictures.ui.theme.Gold
+<span class="hljs-keyword">import</span> com.example.puzzleandpictures.ui.theme.Red
+
+<span class="hljs-meta">@Composable</span>
+<span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">GachaButton</span><span class="hljs-params">(
+    onGachaTapped: () -&gt; <span class="hljs-type">Unit</span>
+)</span></span> {
+    Button(
+        onClick = {onGachaTapped()},
+        colors = ButtonDefaults.textButtonColors(
+            backgroundColor = Gold,
+            contentColor = Red,
+        )
+    ) { Text(text = <span class="hljs-string">"GACHA"</span>) }
+}
+
+<span class="hljs-meta">@Composable</span>
+<span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">ClearButton</span><span class="hljs-params">(
+    onClearTapped: () -&gt; <span class="hljs-type">Unit</span>,
+)</span></span> {
+    Button(onClick = {onClearTapped()})
+    { Text(text = <span class="hljs-string">"CLEAR"</span>) }
+}
+
+<span class="hljs-meta">@Composable</span>
+<span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">ShowButtons</span><span class="hljs-params">(
+    onGachaTapped: () -&gt; <span class="hljs-type">Unit</span>,
+    onClearTapped: () -&gt; <span class="hljs-type">Unit</span>,
+)</span></span> {
+    Column {
+        GachaButton(onGachaTapped)
+        ClearButton(onClearTapped)
+    }
+}
+</div></code></pre>
+<ul>
+<li><code>GachaView.kt</code></li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-keyword">package</span> com.example.puzzleandpictures.view
+
+<span class="hljs-keyword">import</span> androidx.compose.foundation.layout.Column
+<span class="hljs-keyword">import</span> androidx.compose.foundation.layout.Row
+<span class="hljs-keyword">import</span> androidx.compose.material.IconButton
+<span class="hljs-keyword">import</span> androidx.compose.runtime.Composable
+<span class="hljs-keyword">import</span> com.example.puzzleandpictures.repository.RowPicIDs
+
+<span class="hljs-meta">@Composable</span>
+<span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">GachaResultView</span><span class="hljs-params">(
+    rowPicIDs: <span class="hljs-type">RowPicIDs</span>,
+    onPicSelected: (<span class="hljs-type">imageID</span>: <span class="hljs-type">Int</span>) -&gt; <span class="hljs-type">Unit</span>
+)</span></span> {
+    Column {
+        Row {
+            IconButton(onClick = { onPicSelected(rowPicIDs.a) }) {
+                ImageChoose(imageID = rowPicIDs.a)
+            }
+            IconButton(onClick = { onPicSelected(rowPicIDs.b) }) {
+                ImageChoose(imageID = rowPicIDs.b)
+            }
+            IconButton(onClick = { onPicSelected(rowPicIDs.c) }) {
+                ImageChoose(imageID = rowPicIDs.c)
+            }
+            IconButton(onClick = { onPicSelected(rowPicIDs.d) }) {
+                ImageChoose(imageID = rowPicIDs.d)
+            }
+        }
+    }
+}
+</div></code></pre>
+<ul>
+<li><code>MainPictureView.kt</code></li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-keyword">package</span> com.example.puzzleandpictures.view
+
+<span class="hljs-keyword">import</span> androidx.compose.foundation.layout.Column
+<span class="hljs-keyword">import</span> androidx.compose.foundation.layout.Row
+<span class="hljs-keyword">import</span> androidx.compose.material.IconButton
+<span class="hljs-keyword">import</span> androidx.compose.runtime.Composable
+<span class="hljs-keyword">import</span> com.example.puzzleandpictures.repository.MainPictureIDs
+<span class="hljs-keyword">import</span> com.example.puzzleandpictures.repository.RowPicIDs
+
+<span class="hljs-meta">@Composable</span>
+<span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">MainPictureView</span><span class="hljs-params">(
+    mainPictureIDs: <span class="hljs-type">MainPictureIDs</span>,
+    onPlaceSelected: (<span class="hljs-type">placeID</span>: <span class="hljs-type">Int</span>) -&gt; <span class="hljs-type">Unit</span>
+)</span></span> {
+    Column {
+        RowPicView(mainPictureIDs.row1, <span class="hljs-number">0</span>, onPlaceSelected)
+        RowPicView(mainPictureIDs.row2, <span class="hljs-number">4</span>, onPlaceSelected)
+        RowPicView(mainPictureIDs.row3, <span class="hljs-number">8</span>, onPlaceSelected)
+        RowPicView(mainPictureIDs.row4, <span class="hljs-number">12</span>, onPlaceSelected)
+    }
+}
+
+<span class="hljs-meta">@Composable</span>
+<span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">RowPicView</span><span class="hljs-params">(
+    rowPicIDs: <span class="hljs-type">RowPicIDs</span>,
+    rowID: <span class="hljs-type">Int</span>,
+    onPlaceSelected: (<span class="hljs-type">placeID</span>: <span class="hljs-type">Int</span>) -&gt; <span class="hljs-type">Unit</span>
+)</span></span> {
+    Column {
+        Row {
+            IconButton(onClick = { onPlaceSelected(rowID + <span class="hljs-number">0</span>) }) {
+                ImageChoose(imageID = rowPicIDs.a)
+            }
+            IconButton(onClick = { onPlaceSelected(rowID + <span class="hljs-number">1</span>) }) {
+                ImageChoose(imageID = rowPicIDs.b)
+            }
+            IconButton(onClick = { onPlaceSelected(rowID + <span class="hljs-number">2</span>) }) {
+                ImageChoose(imageID = rowPicIDs.c)
+            }
+            IconButton(onClick = { onPlaceSelected(rowID + <span class="hljs-number">3</span>) }) {
+                ImageChoose(imageID = rowPicIDs.d)
+            }
+        }
+    }
+}
+</div></code></pre>
+<ul>
+<li><code>MainView.kt</code></li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-keyword">package</span> com.example.puzzleandpictures.view
+
+<span class="hljs-keyword">import</span> androidx.compose.foundation.layout.*
+<span class="hljs-keyword">import</span> androidx.compose.runtime.Composable
+<span class="hljs-keyword">import</span> androidx.compose.runtime.getValue
+<span class="hljs-keyword">import</span> androidx.compose.ui.Alignment
+<span class="hljs-keyword">import</span> androidx.compose.ui.Modifier
+<span class="hljs-keyword">import</span> androidx.compose.ui.unit.dp
+<span class="hljs-keyword">import</span> com.example.puzzleandpictures.repository.MainPictureIDs
+<span class="hljs-keyword">import</span> com.example.puzzleandpictures.repository.RowPicIDs
+<span class="hljs-keyword">import</span> com.example.puzzleandpictures.viewmodel.MainViewModel
+
+<span class="hljs-meta">@Composable</span>
+<span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">MainView</span><span class="hljs-params">(mainViewModel: <span class="hljs-type">MainViewModel</span>)</span></span> {
+    <span class="hljs-keyword">val</span> mainPictureIDs: MainPictureIDs <span class="hljs-keyword">by</span> mainViewModel.mainPictureIDs
+    <span class="hljs-keyword">val</span> gachaResultIDs: RowPicIDs <span class="hljs-keyword">by</span> mainViewModel.gachaResultIDs
+
+    <span class="hljs-keyword">val</span> padding = <span class="hljs-number">16</span>.dp
+
+    Column(
+        Modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally,
+        ) {
+        Row() {
+            MainPictureView(
+                mainPictureIDs,
+                mainViewModel::onPlaceSelected
+            )
+        }
+        Spacer(Modifier.size(padding))
+
+        GachaResultView(
+            rowPicIDs = gachaResultIDs,
+            onPicSelected = mainViewModel::onPicSelected
+        )
+
+        Spacer(Modifier.size(padding))
+
+        ShowButtons(
+            onGachaTapped = mainViewModel::onGachaTapped,
+            onClearTapped = mainViewModel::onClearTapped,
+        )
+    }
+}
+</div></code></pre>
+<h2 id="uitheme"><code>ui/theme</code></h2>
+<ul>
+<li><code>Color.kt</code></li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-keyword">package</span> com.example.puzzleandpictures.ui.theme
+
+<span class="hljs-keyword">import</span> androidx.compose.ui.graphics.Color
+
+<span class="hljs-keyword">val</span> Purple200 = Color(<span class="hljs-number">0xFFBB86FC</span>)
+<span class="hljs-keyword">val</span> Purple500 = Color(<span class="hljs-number">0xFF6200EE</span>)
+<span class="hljs-keyword">val</span> Purple700 = Color(<span class="hljs-number">0xFF3700B3</span>)
+<span class="hljs-keyword">val</span> Teal200 = Color(<span class="hljs-number">0xFF03DAC5</span>)
+<span class="hljs-keyword">val</span> Gold = Color(<span class="hljs-number">0xFFFFC000</span>)
+<span class="hljs-keyword">val</span> Red = Color(<span class="hljs-number">0xFFFF0000</span>)
+<span class="hljs-keyword">val</span> Green = Color(<span class="hljs-number">0xFF00FF00</span>)
+</div></code></pre>
+
+</body>
+
+</html>
